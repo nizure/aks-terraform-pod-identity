@@ -15,20 +15,20 @@ resource "azurerm_kubernetes_cluster" "k8s" {
 
   resource_group_name = azurerm_resource_group.rg.name
 
-  linux_profile {
-    admin_username = var.vm_user_name
+  # linux_profile {
+  #   admin_username = var.vm_user_name
 
-    ssh_key {
-      key_data = var.public_ssh_key_path
-    }
-  }
+  #   ssh_key {
+  #     key_data = var.public_ssh_key_path
+  #   }
+  # }
 
-  addon_profile {
-    http_application_routing {
-      enabled = true
-    }
+  # addon_profile {
+  #   http_application_routing {
+  #     enabled = true
+  #   }
 
-  }
+  # }
 
   default_node_pool {
     name            = "agentpool"

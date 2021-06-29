@@ -14,18 +14,18 @@ variable "aks-aad-client-id" {
 
 variable "aks-aad-clusteradmins" {
   description = " Name of the Existing admin group."
-  default     = "demo-clusteradmin"
+  default     = "nizaks"
 }
 
 
 variable "resource_group_name" {
   description = "Name of the resource group."
-  default     = "aks-identity-demo"
+  default     = "aks-identity-RG"
 }
 
 variable "location" {
   description = "Location of the cluster."
-  default     = "eastus2"
+  default     = "eastus"
 }
 
 variable "virtual_network_name" {
@@ -35,7 +35,7 @@ variable "virtual_network_name" {
 
 variable "virtual_network_address_prefix" {
   description = "VNET address prefix"
-  default     = "15.0.0.0/8"
+  default     = "10.10.0.0/20"
 }
 
 variable "aks_subnet_name" {
@@ -45,31 +45,34 @@ variable "aks_subnet_name" {
 
 variable "aks_subnet_address_prefix" {
   description = "Subnet address prefix."
-  default     = "15.0.0.0/16"
+  default     = "10.10.0.0/22"
 }
 
 
 variable "container_registry_name" {
 
   description = "Container Registry name"
-  default     = "ENTER NAME HERE"
+  default     =  "akmso"
+  # default     = "ENTER NAME HERE"
 }
 
 variable "key_vault_name" {
   description = "Existing key vault name"
-  default     = "ENTER NAME HERE"
+  default     =  "openhackgitkv"
+  # default     = "ENTER NAME HERE"
 }
 
 
 variable "key_vault_rg" {
   description = "Existing key vault rg"
-  default     = "demo-apps" # ENTER NAME HERE
+  default     = "openhackgitrg"
+  # default     = "demo-apps" # ENTER NAME HERE
 }
 
 
 variable "aks_name" {
   description = "AKS cluster name"
-  default     = "demo-cluster" # ENTER NAME HERE
+  default     = "aksymos" # ENTER NAME HERE
 }
 variable "aks_dns_prefix" {
   description = "Optional DNS prefix to use with hosted Kubernetes API server FQDN."
@@ -94,7 +97,7 @@ variable "aks_agent_os_disk_size" {
 
 variable "kubernetes_version" {
   description = "Kubernetes version"
-  default     = "1.11.5"
+  default     = "1.20.7"
 }
 
 variable "aks_service_cidr" {
@@ -114,7 +117,7 @@ variable "aks_docker_bridge_cidr" {
 
 variable "aks_enable_rbac" {
   description = "Enable RBAC on the AKS cluster. Defaults to false."
-  default     = "false"
+  default     = "true"
 }
 
 variable "vm_user_name" {
@@ -138,7 +141,9 @@ variable "tags" {
 variable "azure_ad_admin_groups" {
   description = "This list of groups Priniciple Ids who will be bounded to cluster-Admin role to get full Admin rights for this cluster. This used only if `azure_ad` is enabled"
   type        = list(string)
-  default     = [Enter GUID HERE]
+  default     = ["7ad463c4-ac57-43ef-81a5-0fbe34f8d72c"]
+
+  # default     = [Enter GUID HERE]
   
 }
 
