@@ -5,7 +5,7 @@ data "azurerm_resource_group" "aks_node_rg" {
 resource "azurerm_user_assigned_identity" "podIdentity" {
   resource_group_name = module.aks.node_resource_group
   location            = var.location
-  name                = "${var.env}podIdentity"
+  name                = "${var.env}podid"
   tags                = var.tags
   depends_on          = [module.aks]
 }
@@ -56,5 +56,15 @@ resource "helm_release" "aad_pod_identity_release" {
   repository = "https://raw.githubusercontent.com/Azure/aad-pod-identity/master/charts"
   chart      = "aad-pod-identity"
   namespace  = "kube-system"
-  depends_on = [module.aks]
+  values = [
+    <<-EOF
+    azureIdentities:
+    - name: "${azurerm_user_assigned_identity.podIdentity.name}"
+      resourceID: "${azurerm_user_assigned_identity.podIdentity.id}"
+      clientID: "${azurerm_user_assigned_identity.podIdentity.client_id}"
+      binding:
+        name: "${azurerm_user_assigned_identity.podIdentity.name}-identity-binding"
+        selector: "${var.aad_pod_id_binding_selector}"
+    EOF
+  ]
 }

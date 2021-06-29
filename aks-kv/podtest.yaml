@@ -1,0 +1,34 @@
+kind: Pod
+apiVersion: v1
+metadata:
+  name: kv-test
+  labels:
+    aadpodidbinding: "aad-pod-id-binding-selector"
+spec:
+  containers:
+    - name: kv-test
+      image: nginx
+      volumeMounts:
+      - name: secrets-store-inline
+        mountPath: /mnt/secrets-store
+        readOnly: true
+  volumes:
+    - name: secrets-store-inline
+      csi:
+        driver: secrets-store.csi.k8s.io
+        readOnly: true
+        volumeAttributes:
+          providerName: "azure"
+          usePodIdentity: "true"
+          tenantId: "72f988bf-86f1-41af-91ab-2d7cd011db47"
+          keyvaultName: "kv-prod02"
+          objects: |
+            array:
+              - |
+                objectName: "demo-secret
+                objectAlias: "demo_alias"
+                objectType: secret
+
+
+
+    # https://blog.baeke.info/2020/12/07/azure-key-vault-provider-for-secrets-store-csi-driver/

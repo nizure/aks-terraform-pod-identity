@@ -7,7 +7,7 @@ variable "location" {
 variable "env" {
   type        = string
   description = "Environment Name"
-  default     = "prod02"
+  default     = "uat02"
 }
 
 variable "tags" {
@@ -60,6 +60,10 @@ variable "min_node" {
 variable "azure_ad_admin_groups" {
   description = "This list of groups Priniciple Ids who will be bounded to cluster-Admin role to get full Admin rights for this cluster. This used only if `azure_ad` is enabled"
   type        = list(string)
-  default     = ["c6122f91-4a1b-420b-a836-183baa5a0cca"]
+  default     = ["7ad463c4-ac57-43ef-81a5-0fbe34f8d72c"]
 
+}
+
+variable aad_pod_id_binding_selector {
+  default = "aad-pod-id-binding-selector"
 }

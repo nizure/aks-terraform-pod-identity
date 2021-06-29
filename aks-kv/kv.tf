@@ -25,6 +25,7 @@ resource "azurerm_key_vault" "mkv" {
 
     secret_permissions = [
       "set",
+      "list",
       "get",
       "delete",
       "purge",
@@ -52,7 +53,6 @@ resource "helm_release" "kv_csi" {
   repository = "https://raw.githubusercontent.com/Azure/secrets-store-csi-driver-provider-azure/master/charts"
   chart      = "csi-secrets-store-provider-azure"
   namespace  = "kube-system"
-  depends_on = [module.aks]
 }
 
 resource "azurerm_key_vault_access_policy" "mi" {
