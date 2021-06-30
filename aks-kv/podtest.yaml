@@ -21,7 +21,7 @@ spec:
           providerName: "azure"
           usePodIdentity: "true"
           tenantId: "72f988bf-86f1-41af-91ab-2d7cd011db47"
-          keyvaultName: "kv-prod02"
+          keyvaultName: "kv-uat02"
           objects: |
             array:
               - |
@@ -30,5 +30,5 @@ spec:
                 objectType: secret
 
 
-
     # https://blog.baeke.info/2020/12/07/azure-key-vault-provider-for-secrets-store-csi-driver/
+    # https://realworldit.net/archives/630
