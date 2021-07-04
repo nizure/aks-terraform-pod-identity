@@ -7,7 +7,7 @@ variable "location" {
 variable "env" {
   type        = string
   description = "Environment Name"
-  default     = "uat02"
+  default     = "prod03"
 }
 
 variable "tags" {
@@ -26,12 +26,12 @@ variable "tags" {
 
 variable "vnet_address_prefix" {
   description = "VNET address prefix"
-  default     = "10.100.0.0/18"
+  default     = "10.200.0.0/18"
 }
 
 variable "aks_subnet_address_prefix" {
   description = "Subnet address prefix."
-  default     = "10.100.0.0/20"
+  default     = "10.200.0.0/20"
 }
 
 variable "kubversion" {
