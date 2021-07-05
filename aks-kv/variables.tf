@@ -7,7 +7,7 @@ variable "location" {
 variable "env" {
   type        = string
   description = "Environment Name"
-  default     = "prod03"
+  default     = "uat001"
 }
 
 variable "tags" {
